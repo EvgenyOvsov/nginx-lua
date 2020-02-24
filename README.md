@@ -16,6 +16,14 @@ http{
     lua_package_path "/opt/lua-resty-core/lib/?.lua;/opt/lua-resty-lrucache/lib/?.lua;/opt/lua-resty-mysql/lib/?.lua;;";
     ...
 ```
+## Run
+• Create config or steal default config from /opt/nginx/conf/*
+• Place config in some folder
+
+```
+docker run --rm -it -p 80:80 -v /some_folder/:/mnt/config/:r lua /bin/bash
+```
+Anyway, it's not thing-in-itself, it's just template. If you reading this it means you know what to do...
 
 ## Example of usage
 
@@ -76,3 +84,4 @@ http{
                  scgi_pass   127.0.0.1:1338;                        
                                                                     
 ```
+
