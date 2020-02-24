@@ -8,7 +8,7 @@ Docker build -t lua .
 Nothing interesting
 
 ## nginx.conf
-Must contain the next... 
+Must contain the next...   
 ```
 http{
     include mime.types;
@@ -17,23 +17,24 @@ http{
     ...
 ```
 ## Run
-• Create config or steal default config from /opt/nginx/conf/*
-• Place config in some folder
-
+• Create config or steal default config from /opt/nginx/conf/*  
+• Place config in some folder  
+  
 ```
 docker run --rm -it -p 80:80 -v /some_folder/:/mnt/config/:r lua /bin/bash
 ```
-Anyway, it's not thing-in-itself, it's just template. If you reading this it means you know what to do...
+  
+Anyway, it's not thing-in-itself, it's just template. If you reading this it means you know what to do...  
 
 ## Example of usage
 
 ### What is it:
-1) We have service which listening only 127.0.0.1:1338 (Unavailable from outside)
-2) We want to ban some bad men
-3) Nginx will serach every ip-address and if address in blacklist.txt - drop connection.
-
-!This is a very non-optimal flow. Do not use it if the load is more than 10-20 connections per minute!
-
+1) We have service which listening only 127.0.0.1:1338 (Unavailable from outside)  
+2) We want to ban some bad men  
+3) Nginx will serach every ip-address and if address in blacklist.txt - drop connection.  
+  
+!This is a very non-optimal flow. Do not use it if the load is more than 10-20 connections per minute!  
+  
 ### How it is done?
 ```
     server {
