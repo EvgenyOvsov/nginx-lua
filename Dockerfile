@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 USER 0
 RUN apt-get -y update
-RUN apt-get install -y gcc git wget curl make libpcre++-dev zlib1g-dev
+RUN apt-get install -y gcc git wget curl make libpcre++-dev zlib1g-dev libssl-dev
 
 WORKDIR /opt/
 RUN git clone https://github.com/openresty/lua-nginx-module.git
@@ -25,7 +25,10 @@ ENV LUAJIT_INC=$LUAJIT_BUILD/include/luajit-2.1
 RUN ./configure --prefix=/opt/nginx \
 --with-ld-opt="-Wl,-rpath,$LUAJIT_LIB" \
 --add-module=/opt/ngx_devel_kit \
---add-module=/opt/lua-nginx-module
+--add-module=/opt/lua-nginx-module \
+--with-http_ssl_module \
+--with-http_v2_module
+
 RUN make -j2 && make install
 RUN echo "alias nginx=/opt/nginx/sbin/nginx" > ~/.bashrc
 
